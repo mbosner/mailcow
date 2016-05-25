@@ -619,7 +619,7 @@ function mailbox_add_mailbox($link, $postarray) {
 		);
 		return false;
 	}
-	if (!ctype_alnum(str_replace(array('.', '-'), '', $local_part)) || empty ($local_part)) {
+	if (!filter_var($local_part."@".$domain,FILTER_VALIDATE_EMAIL) || empty ($local_part)) {
 		$_SESSION['return'] = array(
 			'type' => 'danger',
 			'msg' => 'Mailbox alias must be alphanumeric'
